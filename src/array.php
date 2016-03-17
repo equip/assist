@@ -27,7 +27,7 @@ function grab(array $source, $keys)
  */
 function head(array $list)
 {
-    return array_shift($list);
+    return $list ? current(array_slice($list, 0, 1)) : null;
 }
 
 /**
@@ -39,5 +39,5 @@ function head(array $list)
  */
 function tail(array $list)
 {
-    return array_pop($list);
+    return $list ? current(array_slice($list, -1, 1)) : null;
 }
