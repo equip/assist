@@ -30,6 +30,10 @@ Import any function with `use function Equip\Arr\func;`.
 
 `without($source, $keys)` get an array without some values.
 
+`expect($source, $keys, $default)` get some values from an array, ensuring all keys are defined.
+
 `head($list)` get the first value from a list.
 
 `tail($list)` get the last value from a list.
+
+`index_by($source, $key)` index a collection by a key.
