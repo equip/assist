@@ -17,6 +17,9 @@
         "phpbench/phpbench": "Install globally to run benchmarks"
     },
     "autoload": {
+        "classmap": [
+            "src/"
+        ],
         "files": [
             "src/array.php"
         ]
