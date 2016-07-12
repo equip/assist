@@ -44,32 +44,64 @@ class ChainTest extends TestCase
 
     public function testKeys()
     {
-        $this->markTestIncomplete();
+        $arr = $this->chain->keys()->toArray();
+
+        $this->assertSame(array_keys($this->raw), $arr);
     }
 
     public function testValues()
     {
-        $this->markTestIncomplete();
+        $arr = $this->chain->values()->toArray();
+
+        $this->assertSame(array_values($this->raw), $arr);
     }
 
     public function testMerge()
     {
-        $this->markTestIncomplete();
+        $values = [
+            'fizz' => 'test',
+            'buzz' => 'friends',
+        ];
+        $arr = $this->chain
+            ->merge($values)
+            ->toArray();
+
+        $this->assertSame(array_merge($this->raw, $values), $arr);
     }
 
     public function testIntersect()
     {
-        $this->markTestIncomplete();
+        $values = [
+            'fizz' => 'test',
+            'buzz' => 'world',
+        ];
+        $arr = $this->chain
+            ->intersect($values)
+            ->toArray();
+
+        $this->assertSame(array_intersect($this->raw, $values), $arr);
     }
 
     public function testDiff()
     {
-        $this->markTestIncomplete();
+        $values = [
+            'fizz' => 'hello',
+            'buzz' => 'test',
+        ];
+        $arr = $this->chain
+            ->diff($values)
+            ->toArray();
+
+        $this->assertSame(array_diff($this->raw, $values), $arr);
     }
 
     public function testUnique()
     {
-        $this->markTestIncomplete();
+        $arr = $this->chain
+            ->unique()
+            ->toArray();
+
+        $this->assertSame(array_unique($this->raw), $arr);
     }
 
     public function testReduce()
