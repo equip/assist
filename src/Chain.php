@@ -36,23 +36,18 @@ class Chain
         return in_array($needle, $this->source);
     }
 
-    public function reduce(callable $fn, $initial = null)
-    {
-        return array_reduce($this->source, $fn, $initial);
-    }
-
-    public function filter(callable $fn)
+    public function values()
     {
         $copy = clone $this;
-        $copy->source = array_filter($this->source, $fn);
+        $copy->source = array_values($this->source);
 
         return $copy;
     }
 
-    public function map(callable $fn)
+    public function keys()
     {
         $copy = clone $this;
-        $copy->source = array_map($fn, $this->source);
+        $copy->source = array_keys($this->source);
 
         return $copy;
     }
@@ -89,18 +84,23 @@ class Chain
         return $copy;
     }
 
-    public function values()
+    public function reduce(callable $fn, $initial = null)
+    {
+        return array_reduce($this->source, $fn, $initial);
+    }
+
+    public function filter(callable $fn)
     {
         $copy = clone $this;
-        $copy->source = array_values($this->source);
+        $copy->source = array_filter($this->source, $fn);
 
         return $copy;
     }
 
-    public function keys()
+    public function map(callable $fn)
     {
         $copy = clone $this;
-        $copy->source = array_keys($this->source);
+        $copy->source = array_map($fn, $this->source);
 
         return $copy;
     }
