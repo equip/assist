@@ -170,3 +170,20 @@ function index_by($source, $key)
 
     return $indexed;
 }
+
+/**
+ * Search and replace keys in an array. Keys that are not found will be left as is.
+ *
+ * @param array|Traversable $source
+ * @param array $keys_to_replace key/value pairs [search => replace]
+ * @return array
+ */
+function array_replace_keys($source, array $keys_to_replace)
+{
+    $source = to_array($source);
+
+    $keys = array_keys($source);
+    $replaced_keys = array_replace(array_combine($keys, $keys), $keys_to_replace);
+
+    return array_combine($replaced_keys, $source);
+}

@@ -210,4 +210,23 @@ class ArrayTest extends TestCase
             $this->assertSame($key, $row->id);
         }
     }
+
+    public function testArrayReplaceKeys()
+    {
+        $source = [
+            'foo' => true,
+            'bar' => false,
+        ];
+
+        $keys_to_replace = [
+            'bar' => 'baz',
+        ];
+
+        $new_source = array_replace_keys($source, $keys_to_replace);
+
+        $this->assertSame([
+            'foo' => true,
+            'baz' => false,
+        ], $new_source);
+    }
 }
