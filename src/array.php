@@ -178,7 +178,7 @@ function index_by($source, $key)
  * @param array $keys_to_replace key/value pairs [search => replace]
  * @return array
  */
-function array_replace_keys($source, array $keys_to_replace)
+function array_replace_keys($source, $keys_to_replace)
 {
     $source = to_array($source);
 
