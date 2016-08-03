@@ -228,5 +228,14 @@ class ArrayTest extends TestCase
             'foo' => true,
             'baz' => false,
         ], $new_source);
+
+        //Test that keys not found in source are ignored
+        $source = [
+            'foo' => true,
+            'baz' => false,
+        ];
+
+        $new_source = array_replace_keys($source, $keys_to_replace);
+        $this->assertSame($source, $new_source);
     }
 }

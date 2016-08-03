@@ -172,15 +172,21 @@ function index_by($source, $key)
 }
 
 /**
- * Search and replace keys in an array. Keys that are not found will be left as is.
+ * Search and replace keys in an array.
+ * Keys in $source that are not found in $keys_to_replace will be left as is.
+ * Keys in $keys_to_replace not found in $source will be ignored.
  *
  * @param array|Traversable $source
  * @param array $keys_to_replace key/value pairs [search => replace]
+ * 
  * @return array
  */
 function array_replace_keys($source, $keys_to_replace)
 {
     $source = to_array($source);
+
+    //Only use keys that are present in source
+    $keys_to_replace = array_intersect_key($keys_to_replace, $source);
 
     $keys = array_keys($source);
     $replaced_keys = array_replace(array_combine($keys, $keys), $keys_to_replace);
