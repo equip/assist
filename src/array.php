@@ -122,6 +122,39 @@ function expect($source, $keys, $default = null)
 }
 
 /**
+ * Get a list from an array.
+ *
+ * Similar to array_column(), with the following exceptions:
+ *
+ * 1. Only returns a list from a single column.
+ * 2. Works with iterator collections.
+ * 3. Works with object rows.
+ *
+ * @param array|Traversable $source
+ * @param string $column
+ *
+ * @return array
+ */
+function column($source, $column = null)
+{
+    $values = [];
+
+    foreach ($source as $row) {
+        if (is_object($row)) {
+            if (isset($row->$column)) {
+                $values[] = $row->$column;
+            }
+        } else {
+            if (isset($row[$column])) {
+                $values[] = $row[$column];
+            }
+        }
+    }
+
+    return $values;
+}
+
+/**
  * Take the first value from an array.
  *
  * @param array $list

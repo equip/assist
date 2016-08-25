@@ -238,4 +238,48 @@ class ArrayTest extends TestCase
         $new_source = array_replace_keys($source, $keys_to_replace);
         $this->assertSame($source, $new_source);
     }
+
+    public function dataColumn()
+    {
+        $collection = [
+            [
+                'id' => 1,
+                'name' => 'joe',
+            ],
+            [
+                'id' => 2,
+                'name' => 'joe',
+            ],
+            [
+                'id' => 3,
+                'name' => 'sue',
+            ],
+            [
+                'id' => 4,
+                'name' => null,
+            ],
+        ];
+
+        return [
+            'array' => [
+                $collection,
+            ],
+            'object' => [
+                // simple recursive object conversion
+                json_decode(json_encode($collection), false),
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider dataColumn
+     */
+    public function testColumn($collection)
+    {
+        $ids = column($collection, 'id');
+        $this->assertSame([1, 2, 3, 4], $ids);
+
+        $names = column($collection, 'name');
+        $this->assertSame(['joe', 'joe', 'sue'], $names);
+    }
 }

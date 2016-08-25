@@ -37,3 +37,5 @@ Import any function with `use function Equip\Arr\func;`.
 `tail($list)` get the last value from a list.
 
 `index_by($source, $key)` index a collection by a key.
+
+`column($source, $column)` get a list of values from a collection.
