@@ -211,7 +211,7 @@ function index_by($source, $key)
  *
  * @param array|Traversable $source
  * @param array $keys_to_replace key/value pairs [search => replace]
- * 
+ *
  * @return array
  */
 function array_replace_keys($source, $keys_to_replace)
@@ -225,4 +225,28 @@ function array_replace_keys($source, $keys_to_replace)
     $replaced_keys = array_replace(array_combine($keys, $keys), $keys_to_replace);
 
     return array_combine($replaced_keys, $source);
+}
+
+/**
+ * Type cast some values in an array.
+ *
+ * Only defined values will be typed.
+ *
+ * @param array|Traversable $source
+ * @param array $types
+ *
+ * @return array
+ */
+function typed($source, array $types)
+{
+    $source = to_array($source);
+    $values = array_intersect_key($source, $types);
+
+    foreach ($values as $key => $value) {
+        if ($value !== null) {
+            settype($values[$key], $types[$key]);
+        }
+    }
+
+    return array_replace($source, $values);
 }

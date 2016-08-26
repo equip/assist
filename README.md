@@ -39,3 +39,5 @@ Import any function with `use function Equip\Arr\func;`.
 `index_by($source, $key)` index a collection by a key.
 
 `column($source, $column)` get a list of values from a collection.
+
+`typed($source, $types)` type cast defined values in an array.
