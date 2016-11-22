@@ -18,7 +18,8 @@
     },
     "autoload": {
         "files": [
-            "src/array.php"
+            "src/array.php",
+            "src/string.php"
         ]
     },
     "autoload-dev": {
