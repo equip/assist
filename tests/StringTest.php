@@ -13,35 +13,45 @@ class StringTest extends TestCase
     {
         return [
             [
+                'snake_case',
                 'SnakeCase',
-                'snake_case',
                 true,
             ],
             [
+                'snake_case',
                 'snakeCase',
-                'snake_case',
                 false,
             ],
             [
+                'snake_camel_case',
                 'SnakeCamelCase',
-                'snake_camel_case',
                 true,
             ],
             [
+                'snake_camel_case',
                 'snakeCamelCase',
-                'snake_camel_case',
                 false,
             ],
             [
-                'Snake',
                 'snake',
+                'Snake',
                 true,
             ],
             [
                 'snake',
                 'snake',
                 false,
-            ]
+            ],
+            [
+                'snake__case',
+                'SnakeCase',
+                true,
+            ],
+            [
+                'snake__case',
+                'snakeCase',
+                false,
+            ],
         ];
     }
 
@@ -53,6 +63,6 @@ class StringTest extends TestCase
      */
     public function testSnakeToCamelCase($snake_string, $camel_string, $first)
     {
-        $this->assertSame($snake_string, snakeToCamelCase($camel_string, $first));
+        $this->assertSame($camel_string, snakeToCamelCase($snake_string, $first));
     }
 }
