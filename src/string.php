@@ -13,8 +13,8 @@ namespace Equip\String;
 function snakeToCamelCase($snake_string, $first = false)
 {
     $camel = implode('', array_map(static function($piece) {
-        return empty($piece) ? '' : ucfirst(strtolower($piece));
-    }, explode('_', $snake_string)));
+        return ucfirst(strtolower($piece));
+    }, preg_split('/_++/', $snake_string)));
 
     return $first ? $camel : lcfirst($camel);
 }
