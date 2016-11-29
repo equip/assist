@@ -20,7 +20,7 @@ Import any function with `use function Equip\Arr\func;`.
 
 ### List of functions
 
-`exists($source, $key)` check if a key exists in an array.
+`exists($source, $keys)` check if a key or keys exist in an array.
 
 `to_array($value)` convert a value to an array.
 

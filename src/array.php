@@ -5,16 +5,19 @@ namespace Equip\Arr;
 use Traversable;
 
 /**
- * Check if a key exists in an array.
+ * Check if a key or keys exist in an array.
  *
  * @param array|Traversable $array
- * @param string|integer $key
+ * @param string|integer|array $keys
  *
  * @return boolean
  */
-function exists($array, $key)
+function exists($array, $keys)
 {
-    return array_key_exists($key, to_array($array));
+    $keys = to_array($keys);
+
+    $intersection = array_intersect_key(to_array($array), array_flip($keys));
+    return count($intersection) === count($keys);
 }
 
 /**

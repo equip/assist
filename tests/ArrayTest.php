@@ -156,6 +156,29 @@ class ArrayTest extends TestCase
         $this->assertSame(['c'], tail($this->list));
     }
 
+    public function testExists()
+    {
+        // Works with single keys
+        $this->assertTrue(exists($this->hash, 'company'));
+        $this->assertTrue(exists($this->list, 1));
+        $this->assertFalse(exists($this->hash, 'missing'));
+        $this->assertFalse(exists($this->list, 10));
+
+        // Works with arrays of keys
+        $this->assertTrue(exists($this->hash, ['company', 'owner']));
+        $this->assertTrue(exists($this->list, [0, 2]));
+
+        // False if not all keys are present
+        $this->assertFalse(exists($this->hash, ['company', 'missing']));
+        $this->assertFalse(exists($this->list, [0, 10]));
+
+        // Works with empty arrays
+        $this->assertFalse(exists([], 'missing'));
+        $this->assertFalse(exists([], 10));
+        $this->assertFalse(exists([], ['missing', 'also missing']));
+        $this->assertTrue(exists([], []));
+    }
+
     public function testToArray()
     {
         // Works with arrays
