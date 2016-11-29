@@ -1,15 +1,22 @@
+# Forces faster Travis-CI Container Infrastructure
+sudo: false
 language: php
 
 php:
   - 5.5
   - 5.6
   - 7.0
-  - hhvm
+  - 7.1
 
 matrix:
+  fast_finish: true
   include:
     - php: 5.5
       env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
+    - php: hhvm
+      sudo: true
+      dist: trusty
+      group: edge # Until the next stable group update after 2016-12-01
 
 before_script:
   - travis_retry composer require phpunit/phpunit phpbench/phpbench
