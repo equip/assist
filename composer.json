@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5"
+        "php": ">=5.6"
     },
     "require-dev": {
         "lstrojny/functional-php": "<=1.2.4"
@@ -20,6 +20,9 @@
         "phpbench/phpbench": "Install globally to run benchmarks"
     },
     "autoload": {
+        "classmap": [
+            "src/"
+        ],
         "files": [
             "src/array.php",
             "src/string.php"
